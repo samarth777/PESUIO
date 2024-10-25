@@ -11,16 +11,25 @@ from pathlib import Path
 
 load_dotenv()
 
+# Configure the embedding model and LLM 
+#Uncomment and use this incase JinaEmbedding gives you an error
+# Settings.embed_model = CohereEmbedding(
+#     api_key=os.getenv("COHERE_API_KEY"),
+#     model_name="embed-english-v3.0",
+#     input_type="search_query"
+# )
+
 # Configure the embedding model and LLM
-Settings.embed_model = CohereEmbedding(
-    api_key=os.getenv("COHERE_API_KEY"),
-    model_name="embed-english-v3.0",
-    input_type="search_query"
+Settings.embed_model = JinaEmbedding(
+    api_key=os.getenv("JINA_API_KEY"),
+    model="jina-embeddings-v3",
+    # choose `retrieval.passage` to get passage embeddings
+    task="retrieval.passage",
 )
 
 Settings.llm = Groq(
     api_key=os.getenv("GROQ_API_KEY"),
-    model="mixtral-8x7b-32768",
+    model="llama-3-1-70b-versatile",
     temperature=0.7
 )
 
