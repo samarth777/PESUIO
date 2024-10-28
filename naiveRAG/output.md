@@ -59,23 +59,25 @@ In this project, the carbon footprint and energy emissions of large vision and a
 # LITERATURE SURVEY
 
 - Vivian Liu, Yiqiao Yin, “Green AI: Exploring Carbon Footprints, Mitigation Strategies, and Trade Offs in Large Language Model Training”, (2024)
-- Paper evaluates carbon emissions of well-known LLMs and highlights importance of hardware in carbon footprint by training and tracking emissions on 2 different GPUs and comparing differences.
-- Key info taken from this paper was the usage of Code Carbon to track the energy emissions on the GPUs.
-- Paper only evaluated the emissions released on training specific well known LLMs.
+- paper evaluates carbon emissions of well-known LLMs and highlights importance of hardware in carbon footprint by training and tracking emissions on 2 different GPUs and comparing differences.
+- key info taken from this paper was the usage of Code Carbon to track the energy emissions on the GPUs.
+- paper only evaluated the emissions released on training specific well known LLMs.
 - David Patterson, Joseph Gonzalez, Urs Hölzle, Quoc Le, Chen Liang and Lluis-Miquel Munguia, Daniel Rothchild, David R. So, Maud Texier and Jeff Dean, “Carbon Footprint of Machine Learning Training Will Plateau, Then Shrink”, (2022)
 - Paper provides the formula for calculating carbon footprint given energy emissions and carbon intensity.
-- The carbon intensity can vary from region to region and depends on the location of the data centres.# Model training and Inference code needs to be used while calculating carbon footprint
+- The carbon intensity can vary from region to region and depends on the location of the data centres.# Model Training and Inference
 
-- Energy emissions in this paper are calculated manually by checking the number of hours to train the processor, number of processors and average power per processor.
+Model training and Inference code needs to be used while calculating carbon footprint.
 
-# Mark A.M. Kramer and Peter M. Roth, “Advancing Green Computer Vision: Principles and Practices for Sustainable Development for Real-time Computer Vision Applications “, (2024)
+Energy emissions in this paper are calculated manually by checking the number of hours to train the processor, number of processors and average power per processor.
 
-- Paper highlights significant issues in deploying computer vision systems in real-world applications such as high computational complexity and power consumption
-- Computational complexity can be reduced by model quantisation (reducing the number of model parameters)
-- Specifies need for accurate and better data collection and preprocessing and prioritizing quality of data over quantity
-- This paper is more for analysis on how to reduce the emissions and carbon footprint
+# Mark A.M. Kramer and Peter M. Roth, “Advancing Green Computer Vision: Principles and Practices for Sustainable Development for Real-time Computer Vision Applications”, (2024)
 
-# OTHER RESEARCH PAPERS AND ARTICLES REFERRED:
+- Paper highlights significant issues in deploying computer vision systems in real-world applications such as high computational complexity and power consumption.
+- Computational complexity can be reduced by model quantisation (reducing the number of model parameters).
+- Specifies need for accurate and better data collection and preprocessing and prioritizing quality of data over quantity.
+- This paper is more for analysis on how to reduce the emissions and carbon footprint.
+
+# Other Research Papers and Articles Referred:
 
 - David Patterson, Joseph Gonzalez, Quoc Le, Chen Liang, Lluis-Miquel Munguia, Daniel Rothchild, David So, Maud Texier and Jeff Dean, “Carbon Emissions and Large Neural Network Training”, (2021)
 - Emma Strubell, Ananya Ganesh and Andrew McCallum, “Energy and Policy Considerations for Deep Learning in NLP”, (2019)
@@ -136,7 +138,7 @@ Uses depthwise separable convolutions and inverted residuals with linear bottlen
 
 The model outputs class probabilities, indicating the likelihood of the image belonging to each class.
 
-only 3.4 million parameters (approximately)
+Only 3.4 million parameters (approximately).
 
 # EfficientNet-B0
 
@@ -146,7 +148,7 @@ only 3.4 million parameters (approximately)
 
 Uses a combination of techniques like depthwise separable convolutions and compound scaling to improve efficiency.
 
-relatively small 5.3 million parameters (approximately)
+Relatively small 5.3 million parameters (approximately).
 
 # Audio Processing Models:
 
@@ -217,7 +219,7 @@ The dataset is split into train-clean-100 set which consists of 100 hours of cle
 # Model Training and Inference:
 
 - Randomized the weights of each model before training. For the vision models, the models had a parameter ‘weights’ so a simple initialization ‘weights=None’ was sufficient. For the audio processing models, the neural networks were traversed layer by layer and the weights were randomized.
-- The models were trained on their respective datasets. All vision models were trained on CIFAR 10 dataset with batch size 128 for 100 epochs and all the audio processing models were trained on the LIBRISPEECH dataset with a batch size of 4 for 50 epochs.# Current Page Content
+- The models were trained on their respective datasets. All vision models were trained on CIFAR 10 dataset with batch size 128 for 100 epochs and all the audio processing models were trained on the LIBRISPEECH dataset with a batch size of 4 for 50 epochs. The batch# Current Page Content
 
 Sizes were chosen by monitoring GPU memory consumption and ensuring maximum utilization and minimum time consumption.
 
@@ -250,14 +252,14 @@ The combined energy vs time graph for all vision models is shown below
 
 |Energy emissions|Training Time (Vision Models)|
 |---|---|
-|PE Netso|Denseretizi|
-|#obilcNctVz|Training Time (Fcuts)|
+|PE Netso|Denserctizi|
+|#obilcNctVz| |
 
-The combined energy vs epoch graph for vision models is shown below.# OBSERVATIONS (VISION MODELS):
+The combined energy vs epoch graph for vision models is shown below.# OBSERVATIONS (VISION MODELS)
 
-# Energy Emissions    Epochs (Vision Models)
+# Energy Emissions
 
-# Epochs
+# Epochs (Vision Models)
 
 # VGG16:
 
@@ -312,30 +314,37 @@ MobileNetV2 has the lowest energy consumption, emitting approximately 0.479 kWh 
 
 # Energy vs Time Graph for Audio Processing Models
 
-|Model|Energy Emissions|Training Time (Hours)|
+|Model|Energy Emissions (kWh)|Training Time (Hours)|
 |---|---|---|
-|Wavezvec 2 C| | |
-|TavzLetter| | |
+|Wav2Vec 2.0| | |
+|Tacotron| | |
 |DeepSpeech| | |
 |HDemucs| | |# The combined energy vs epoch graph for all audio processing models is given below.
+
+Wavezvec 2.0
+Vaviletter
+DeepSpeech
+Hbcmucs
+L1
 
 # OBSERVATIONS (AUDIO PROCESSING MODELS):
 
 |Energy Emissions|No. of Epochs (Audio Processing Models)|
 |---|---|
 |Edocnst| |
-|Hdemucs:| |
-|• Energy consumption of 9.988 kWh over 50 epochs with a training time of approximately 31 hours|• Energy consumption of 9.988 kWh over 50 epochs with a training time of approximately 31 hours|
-|Reasons:|Reasons:|
-|• The model is designed for music source separation, which is a complex task requiring detailed feature extraction.|• The model is designed for music source separation, which is a complex task requiring detailed feature extraction.|
-|• It uses a complex architecture with several layers, leading to high computational requirements.|• It uses a complex architecture with several layers, leading to high computational requirements.|
-|Wave2Vec 2.0| |# Energy Consumption Analysis
+
+# Hdemucs:
+
+- Energy consumption of 9.988 kWh over 50 epochs with a training time of approximately 31 hours
+- Reasons:
+
+# Wave2Vec 2.0# Energy Consumption Analysis
 
 # Model Comparisons
 
 # Convolutional and Transformer Model
 
-• Energy consumption 0.499 kWh over 50 epochs with a training time of approximately 12.25 hours
+Energy consumption: 0.499 kWh over 50 epochs with a training time of approximately 12.25 hours
 
 # Reasons:
 
@@ -344,7 +353,7 @@ MobileNetV2 has the lowest energy consumption, emitting approximately 0.479 kWh 
 
 # DeepSpeech
 
-• Energy consumption over 3.9 kWh over 50 epochs with a training time of approximately 12 hours
+Energy consumption: over 3.9 kWh over 50 epochs with a training time of approximately 12 hours
 
 # Reasons:
 
@@ -354,7 +363,7 @@ MobileNetV2 has the lowest energy consumption, emitting approximately 0.479 kWh 
 
 # Wav2Letter
 
-• Energy consumption over 0.499 kWh over 50 epochs with a training time of approximately 2.25 hours
+Energy consumption: over 0.499 kWh over 50 epochs with a training time of approximately 2.25 hours
 
 # Reasons:
 
@@ -371,33 +380,33 @@ MobileNetV2 has the lowest energy consumption, emitting approximately 0.479 kWh 
 - The batch sizes chosen while training the vision models was 128 and the batch sizes chosen for training the audio processing models was 4. This was done observing the GPU memory and ensuring maximum possible GPU utilization.
 - However more efficient hardware always exist and should be incorporated to reduce carbon emissions.
 - Model Pruning and Quantization
-- Model Pruning: Remove unnecessary weights and neurons from the network to reduce its size and complexity, leading to lower energy consumption during training and inference.# Quantization:
+- Model Pruning: Remove unnecessary weights and neurons from the network to reduce its size and complexity, leading to lower energy consumption during training and inference.# Quantization
 
 Convert the model weights from floating-point precision to lower precision (e.g., int8), which reduces computational load and energy usage.
 
-# Transfer Learning:
+# Transfer Learning
 
 Utilize pre-trained models and fine-tune them on specific tasks, which requires significantly less energy compared to training from scratch.
 
-# Green Data Centres:
+# Green Data Centres
 
 Train models in data centres powered by renewable energy sources. Many cloud providers now offer options to choose data centres with greener energy profiles.
 
-# CONCLUSION:
+# CONCLUSION
 
-# Significant Variability in Energy Consumption and Carbon Emissions:
+# Significant Variability in Energy Consumption and Carbon Emissions
 
 This study revealed considerable differences in energy consumption and carbon emissions across different vision and audio processing models. VGG16 and HDemucs exhibited the highest emissions, highlighting the impact of model complexity on energy usage.
 
-# Efficiency of Models:
+# Efficiency of Models
 
 MobileNetV2 and Wav2Letter, which are designed with efficiency in mind, demonstrated lower energy consumption compared to traditional models like VGG16 and HDemucs. This underscores the importance of model architecture in achieving energy efficiency.
 
-# Optimization Strategies:
+# Optimization Strategies
 
 Selecting the right models, implementing optimization techniques such as model pruning, quantization, and efficient training algorithms can substantially reduce the carbon footprint of AI models without compromising performance. These strategies should be prioritized in future model development.
 
-# Broader Implications:This study contributes to the growing body of research on Green AI, highlighting the importance of reducing the environmental impact of AI technologies.
+# Broader ImplicationsThis study contributes to the growing body of research on Green AI, highlighting the importance of reducing the environmental impact of AI technologies.
 
 # REFERENCES:
 

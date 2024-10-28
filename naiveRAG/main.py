@@ -7,6 +7,7 @@ import requests
 import os
 import json
 from pinecone import Pinecone  # Make sure this import is correct
+import cohere
 
 parser = LlamaParse(
     result_type='markdown',
@@ -41,25 +42,21 @@ def fixed_size_chunks(text, chunk_size, overlap):
 chunks = fixed_size_chunks(md_text, chunk_size, chunk_overlap)
 print(f"Number of chunks: {len(chunks)}")
 
-# Embedding with Jina API directly
-jina_api_key = os.getenv('JINA_API_KEY')
-headers = {
-    'Authorization': f'Bearer {jina_api_key}',
-    'Content-Type': 'application/json'
-}
-url = 'https://api.jina.ai/v1/embeddings'
+# Replace Jina embedding with Cohere
+co = cohere.ClientV2(os.getenv('COHERE_API_KEY'))
 
 embedded_chunks = []
 for chunk in chunks:
-    payload = {
-        'input': chunk,
-        'model': 'jina-embeddings-v2-base-en'
-    }
-    response = requests.post(url, json=payload, headers=headers)
-    if response.status_code == 200:
-        embedded_chunks.append(response.json()['data'][0]['embedding'])
-    else:
-        print(f"Error embedding chunk: {response.status_code}")
+    try:
+        response = co.embed(
+            texts=[chunk],
+            model="embed-english-v3.0",
+            input_type="search_document",
+            embedding_types=["float"]
+        )
+        embedded_chunks.append(response.embeddings.float_[0])
+    except Exception as e:
+        print(f"Error embedding chunk: {str(e)}")
 
 print(f"Number of embedded chunks: {len(embedded_chunks)}")
 
@@ -85,7 +82,7 @@ index_name = "pesuio-rag"  # Replace with your Pinecone index name
 if index_name not in pc.list_indexes().names():
     pc.create_index(
         name=index_name,
-        dimension=768,  # Dimension of Jina embeddings
+        dimension=1024,  # Cohere embed-english-v3.0 dimension
         metric='cosine'
     )
 
